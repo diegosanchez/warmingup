@@ -3,8 +3,15 @@
 <head>
   <title>Index</title>
 </head>
-<body>
-  <h1>Index</h1>
+<body ng-app="warmup">
+  <h1>Testing angular</h1>
 
+  <div class="container" ng-controller="myController">
+    <input id="greeting" type="text" name="name" ng-model="name">
+    <span>{{greet(name)}}</span>
+  </div>
+
+  <script src="/js/angular/angular.js"></script>
+  <script src="/js/warmup.js"></script>
 </body>
 </html>
