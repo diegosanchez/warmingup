@@ -8,10 +8,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :index }
-      format.json do 
-        puts @users.to_json
-        render json: @users
-      end
+      format.json { render json: @users.to_json, callback: params[:callback] }
     end
   end
 

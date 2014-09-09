@@ -2,16 +2,15 @@
 <html>
 <head>
   <title>Index</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="all">
 </head>
 <body ng-app="warmup">
-  <h1>Testing angular</h1>
 
-  <div class="container" ng-controller="myController">
-    <input id="greeting" type="text" name="name" ng-model="name">
-    <span>{{greet(name)}}</span>
-  </div>
+  <div class="container" ng-view></div>
 
   <script src="/js/angular/angular.js"></script>
+  <script src="/js/angular/angular-route.js"></script>
   <script src="/js/warmup.js"></script>
 </body>
 </html>
