@@ -16,34 +16,33 @@ app.config( [ '$routeProvider', function($routeProvider) {
 
 }]);
 
-app.controller('userController', [ '$scope', 'users', function($scope, users) {
+app.controller('userController', [ '$scope', users, function($scope, users) {
   
-  users.promise.then( function(response) {
-    console.log( response.data );
-    $scope.users = response.data;
+  users.grabUsers( function(users) {
+    console.log("then", users );
+    $scope.users = users;
   });
 
 }]);
 
-app.controller('postsController', [ '$scope', '$routeParams', 'users', function($scope, $routeParams, users) {
+app.controller('postsController', [ '$scope', '$routeParams', function($scope, $routeParams, users) {
   console.log( $routeParams.userId );
   
 }]);
 
-app.factory('users', [ '$http', function users($http) {
-  var factory = { };
+app.factory('users', [ '$http', function($http) {
+  var factory = {};
 
-  var url = '/users.json' +  '/?callback=JSON_CALLBACK';
-
-  factory.promise = $http.jsonp(url)
-    .success( function(data, status, headers, config) {
-      factory.data = data;
+  factory.grabUsers = function( callback ) {
+    $http.get('/users.json').success( function(data) {
+      callback( data);
     })
     .error( function(data, status, headers, config) {
       console.debug("status: ", status);
     });
+  };
 
+  return factory;
 
- return factory;
 }]);
 
